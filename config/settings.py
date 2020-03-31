@@ -11,16 +11,25 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from django.core.exceptions import ImproperlyConfigured
+import json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+SECRETS_DIR = os.path.join(BASE_DIR, ".secrets")
+SECRETS_BASE = os.path.join(SECRETS_DIR, "secret.json")
+secrets_base = json.loads(open(SECRETS_BASE, "rt").read())
+
+DATABASE_BASE = os.path.join(SECRETS_DIR, "database.json")
+database_base = json.loads(open(DATABASE_BASE, "rt").read())
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ")1wy-y)4$@f+@pk&zk4x#!8k5-^uoo=c%ake1kep*$_*mj+wcz"
+
+SECRET_KEY = secrets_base["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -86,11 +95,11 @@ DATABASES = {
         # "ENGINE": "django.db.backends.sqlite3",
         # "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "mysql",
-        "USER": "gywns41",
-        "PASSWORD": "todoworks",
-        "HOST": "localhost",
-        "PORT": "3306",
+        "NAME": database_base["NAME"],
+        "USER": database_base["USER"],
+        "PASSWORD": database_base["PASSWORD"],
+        "HOST": database_base["HOST"],
+        "PORT": database_base["PORT"],
     }
 }
 
