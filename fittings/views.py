@@ -20,6 +20,8 @@ class FittingCerti1(TemplateView):
 class FittingCerti2(TemplateView):
     template_name = "certi/certi2.html"
 
+class FittingOpt(TemplateView):
+    template_name = "fittings/opt.html"
 
 class FittingOptList(TemplateView):
     template_name = "fittings/opt_list.html"
