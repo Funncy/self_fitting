@@ -63,6 +63,23 @@
                 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
             }
 
+            select {
+                /* 원하는 너비설정 */
+                padding: 5px;
+                margin-right: 10px;
+                /* 여백으로 높이 설정 */
+                font-family: inherit;
+                /* 폰트 상속 */
+                border: 1px solid #999;
+                border-radius: 0px;
+                /* iOS 둥근모서리 제거 */
+                -webkit-appearance: none;
+                /* 네이티브 외형 감추기 */
+                -moz-appearance: none;
+                appearance: none;
+
+            }
+
             .buttonArea {
                 overflow: hidden;
                 margin-top: 20px;
@@ -177,6 +194,7 @@
 
 
             <div id="page2" class="page2">
+
                 <div id="message">
                     <h2>셀프 피팅</h2>
                     {% if form.errors %}
@@ -300,10 +318,10 @@
                 <div id="message">
                     <h2>셀프 피팅</h2>
 
-                    <div class="buttonArea">
+                    <div class="buttonArea buttonBox">
                         <a class="videobutton"
                             style="margin: 10px 50px ; padding: 7px; background-color: darkslategrey;"
-                            onclick="window.open('https://youtu.be/FkyFb1b5YyU','_self');">피팅방법 동영상 보기</a>
+                            onclick="window.open('https://youtu.be/QlVKVWRXTew','_self');">피팅방법 동영상 보기</a>
                     </div>
                     <div style="margin-top:20px;">
                         <div class="inputbox">
@@ -430,49 +448,6 @@
             }
         }
 
-        $('.goPage3').on('click', function () {
-
-            var isError = false;
-            //아동이름 체크
-            if (document.getElementById("id_kid_name").value == "") {
-                document.getElementById("error_kid_name").innerHTML = "<strong>아동이름을 입력해주세요.</strong>";
-                isError = true;
-            }
-            //법정대리인 체크
-            if (document.getElementById("id_parent_name").value == "") {
-                document.getElementById("error_parent_name").innerHTML = "<strong>법정대리인을 입력해주세요.</strong>";
-                isError = true;
-            }
-            //거주지 체크
-            if (document.getElementById("id_location").value == "") {
-                document.getElementById("error_location").innerHTML = "<strong>거주지를 입력해주세요.</strong>";
-                isError = true;
-            }
-            //생년월일 체크
-            if (document.getElementById("id_birthdate").value == "") {
-                document.getElementById("error_birthdate").innerHTML = "<strong>생년월일을 입력해주세요.</strong>";
-                isError = true;
-            }
-            //연락처 체크
-            if (document.getElementById("id_phone_number").value == "") {
-                document.getElementById("error_phone_number").innerHTML = "<strong>연락처를 입력해주세요.</strong>";
-                isError = true;
-            }
-            //키 체크
-            if (document.getElementById("id_height").value == "") {
-                document.getElementById("error_height").innerHTML = "<strong>아동의 키를 입력해주세요.</strong>";
-                isError = true;
-            }
-            //몸무게 체크
-            if (document.getElementById("id_weight").value == "") {
-                document.getElementById("error_weight").innerHTML = "<strong>아동의 몸무게를 입력해주세요.</strong>";
-                isError = true;
-            }
-
-            if (isError == true) {
-                return;
-            }
-        });
 
     </script>
 

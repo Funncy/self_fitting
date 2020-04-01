@@ -1,6 +1,17 @@
 from django import forms
 from .models import Fitting
 
+YEARS = [x for x in range(1940, 2021)]
+
+
+class MySelectDateWidget(forms.SelectDateWidget):
+    def get_context(self, name, value, attrs):
+        old_state = self.is_required
+        self.is_required = False
+        context = super(MySelectDateWidget, self).get_context(name, value, attrs)
+        self.is_required = old_state
+        return context
+
 
 class FittingForm(forms.ModelForm):
     class Meta:
@@ -26,7 +37,7 @@ class FittingForm(forms.ModelForm):
             "kid_name": forms.TextInput(attrs={"placeholder": "예)홍길동"}),
             "parent_name": forms.TextInput(attrs={"placeholder": "예)홍길동"}),
             "location": forms.TextInput(attrs={"placeholder": "예)경기도 시흥시"}),
-            "birthdate": forms.TextInput(attrs={"placeholder": "예)2010-02-03"}),
+            "birthdate": MySelectDateWidget(years=YEARS, empty_label=("년도", "월", "일")),
             "phone_number": forms.TextInput(attrs={"placeholder": "예)010-1111-2222"}),
             "height": forms.TextInput(attrs={"maxlength": "3", "style": "width:30px;"}),
             "weight": forms.TextInput(attrs={"maxlength": "3", "style": "width:30px;"}),
@@ -66,15 +77,15 @@ class FittingForm(forms.ModelForm):
             "front_picture": {"required": "정면사진을 업로드해주세요.",},
             "side_picture": {"required": "측면사진을 업로드해주세요.",},
         }
-    
+
     def clean_check1(self, *args, **kwargs):
-        check1 = self.cleaned_data.get('check1')
+        check1 = self.cleaned_data.get("check1")
         if check1 is False:
             raise forms.ValidationError("동의하셔야합니다.")
         return check1
 
     def clean_check2(self, *args, **kwargs):
-        check2 = self.cleaned_data.get('check2')
+        check2 = self.cleaned_data.get("check2")
         if check2 is False:
             raise forms.ValidationError("동의하셔야합니다.")
         return check2

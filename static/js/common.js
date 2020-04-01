@@ -34,16 +34,17 @@ $(function () {
         } else {
             document.getElementById("error_location").innerHTML = "";
         }
-        //생년월일 체크
-        if (document.getElementById("id_birthdate").value == "") {
-            document.getElementById("error_birthdate").innerHTML = "<strong>생년월일을 입력해주세요.</strong>";
-            isError = true;
-        } else if (isNaN(Date.parse(document.getElementById("id_birthdate").value))) {
-            document.getElementById("error_birthdate").innerHTML = "<strong>잘못된 입력입니다.</strong>";
-            isError = true;
-        } else {
-            document.getElementById("error_birthdate").innerHTML = "";
-        }
+
+        // //생년월일 체크
+        // if (document.getElementById("id_birthdate").value == "") {
+        //     document.getElementById("error_birthdate").innerHTML = "<strong>생년월일을 입력해주세요.</strong>";
+        //     isError = true;
+        // } else if (isNaN(Date.parse(document.getElementById("id_birthdate").value))) {
+        //     document.getElementById("error_birthdate").innerHTML = "<strong>잘못된 입력입니다.</strong>";
+        //     isError = true;
+        // } else {
+        //     document.getElementById("error_birthdate").innerHTML = "";
+        // }
         //연락처 체크
         if (document.getElementById("id_phone_number").value == "") {
             document.getElementById("error_phone_number").innerHTML = "<strong>연락처를 입력해주세요.</strong>";
