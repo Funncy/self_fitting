@@ -13,6 +13,6 @@
 asgiref==3.2.7
 django==3.0.4
 mysqlclient==1.4.6
-pillow==7.0.0
+pillow==9.3.0
 pytz==2019.3
 sqlparse==0.3.1
